@@ -1,0 +1,20 @@
+.length-adjuster{
+    width:250px;
+}
+button{
+    background: none;
+    outline: none;
+    border:none;
+    color:white;
+    cursor:pointer;
+}
+.length-adjuster,
+.btn-change{
+    display:inline-block;
+}
+.btn-change{
+    width:55px;
+}
+#break-label,#session-label{
+    display:block;
+}
