@@ -1,25 +1,32 @@
 import { useEffect, useState } from "react";
-import PropTypes from 'prop-types'
-import "./Timer.css"
-export default function Timer({initialDuration}) {
+import PropTypes from "prop-types";
+import "./Timer.css";
+export default function Timer({ initialDuration,currentTimer,setCurrentTimer,action,setAction }) {
+  
 
-  const [action, setAction] = useState("Session");
-  const [currentTimer, setCurrentTimer] = useState("25");
+  useEffect(() => {
+    setCurrentTimer(initialDuration * 60);
+  }, [initialDuration,action]);
 
-    useEffect(() => {
-        setCurrentTimer(initialDuration);
-    },[initialDuration])
-
+  const formatMinutesSeconds = (time) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+    return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`
+  }
   return (
     <div className="timer">
       <div className="timer-wrapper">
         <div id="timer-label">{action}</div>
-        <div id="time-left">{currentTimer+':00'}</div>
+        <div id="time-left">{(currentTimer)}</div>
       </div>
     </div>
   );
 }
 
 Timer.propTypes = {
-    initialDuration:PropTypes.number,
-}
+  initialDuration: PropTypes.number,
+  currentTimer:PropTypes.number,
+  setCurrentTimer:PropTypes.func,
+  action:PropTypes.string,
+  setAction:PropTypes.func,
+};
