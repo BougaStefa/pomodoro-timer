@@ -17,7 +17,7 @@ export default function Timer({ initialDuration,currentTimer,setCurrentTimer,act
     <div className="timer">
       <div className="timer-wrapper">
         <div id="timer-label">{action}</div>
-        <div id="time-left">{(currentTimer)}</div>
+        <div id="time-left">{formatMinutesSeconds(currentTimer)}</div>
       </div>
     </div>
   );

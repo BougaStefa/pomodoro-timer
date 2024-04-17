@@ -18,6 +18,7 @@ export default function Controls({
 }) {
   const breakTime = breakDuration * 60;
   const sessionTime = sessionDuration * 60;
+  const audio = document.getElementById("beep");
 
   useEffect(() => {
     if (timerStatus) {
@@ -25,6 +26,7 @@ export default function Controls({
       const id = setInterval(() => {
         setCurrentTimer((prevTimer) => (prevTimer > 0 ? prevTimer - 1 : 0));
       }, 1000);
+      audio.play();
       setIntervalId(id);
     } else {
       console.log("Pause Timer");
@@ -44,6 +46,7 @@ export default function Controls({
       console.log("Change Action");
       const newAction = action === "Session" ? "Break" : "Session";
       setTimeout(() => {
+        audio.pause();
         setAction(newAction);
       }, 1000);
     }
@@ -65,6 +68,11 @@ export default function Controls({
       <button id="reset" onClick={reset}>
         <FontAwesomeIcon icon={faRefresh} style={{ color: "white" }} />
       </button>
+      <audio
+        src="https://cdn.freecodecamp.org/testable-projects-fcc/audio/BeepSound.wav"
+        preload="auto"
+        id="beep"
+      ></audio>
     </div>
   );
 }

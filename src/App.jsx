@@ -6,8 +6,8 @@ import Timer from "./Timer";
 import Controls from "./Controls";
 
 function App() {
-  const [breakDuration, setBreakDuration] = useState(0.2);
-  const [sessionDuration, setSessionDuration] = useState(0.1);
+  const [breakDuration, setBreakDuration] = useState(5);
+  const [sessionDuration, setSessionDuration] = useState(25);
   const [currentTimer, setCurrentTimer] = useState(25);
   const [timerStarted, setTimerStarted] = useState(false);
   const [intervalId, setIntervalId] = useState(null);
@@ -32,6 +32,9 @@ function App() {
     setCurrentTimer(25 * 60);
     setAction("Session");
     clearInterval(intervalId);
+    const audio = document.getElementById("beep");
+    audio.pause();
+    audio.currentTime = 0;
   };
 
   return (
